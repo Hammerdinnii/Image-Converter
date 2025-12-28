@@ -1,71 +1,181 @@
+/* GLOBAL RESETS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f172a; /* Dark Blue-Gray */
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
+/* BACKGROUND ACCENTS (The glowing blobs) */
+.background-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.4) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.4) 0%, transparent 25%);
+}
+
+/* MAIN CARD CONTAINER */
 .container {
-    background: white;
+    background: rgba(30, 41, 59, 0.7); /* Semi-transparent dark */
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); /* Glass effect */
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* CUSTOM FILE INPUT STYLING */
+.upload-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-custom-label {
+    background: #1e293b;
+    border: 2px dashed #475569;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
+    transition: all 0.3s ease;
+    color: #cbd5e1;
 }
 
-h1 { margin-bottom: 0.5rem; color: #333; }
-p { color: #666; margin-bottom: 1.5rem; }
+/* Highlight border when hovering over input */
+.file-input:hover + .file-custom-label {
+    border-color: #6366f1;
+    background: #253046;
+    color: #fff;
+}
 
-.upload-section { margin-bottom: 1rem; }
-
+/* CONTROLS ROW */
 .controls {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    align-items: center;
+    margin-bottom: 0;
 }
 
 select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    background: #334155;
+    color: white;
+    padding: 12px;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
 }
 
 button {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:hover { background-color: #0056b3; }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
 
+button:active {
+    transform: translateY(0);
+}
+
+/* RESULT AREA */
 .hidden { display: none; }
 
-#previewImage {
-    max-width: 100%;
-    border-radius: 8px;
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 2rem 0 1.5rem 0;
+}
+
+h3 {
+    color: #e2e8f0;
     margin-bottom: 1rem;
-    border: 1px solid #ddd;
+    font-weight: 400;
+}
+
+.image-box img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 2px solid #334155;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin-bottom: 1.5rem;
 }
 
 .btn-download {
     display: inline-block;
-    background-color: #28a745;
+    background-color: #10b981; /* Emerald Green */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 30px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px; /* Pill shape */
     font-weight: bold;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    transition: all 0.3s ease;
 }
 
-.btn-download:hover { background-color: #218838; }
+.btn-download:hover {
+    background-color: #059669;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+    transform: scale(1.05);
+}
+
+/* Simple Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
