@@ -3,34 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Image Converter</title>
+    <title>Image Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="background-blobs"></div>
+
     <div class="container">
         <h1>Image Converter</h1>
-        <p>Convert images securely in your browser.</p>
+        <p>Fast, secure, and client-side.</p>
 
-        <div class="upload-section">
-            <input type="file" id="imageInput" accept="image/*">
+        <div class="upload-wrapper">
+            <input type="file" id="imageInput" accept="image/*" class="file-input">
+            <div class="file-custom-label">
+                <span>Click to Upload Image</span>
+            </div>
         </div>
 
         <div class="controls">
-            <label for="formatSelect">Convert to:</label>
-            <select id="formatSelect">
-                <option value="image/png">PNG</option>
-                <option value="image/jpeg">JPEG</option>
-                <option value="image/webp">WebP</option>
-            </select>
-            <button id="convertBtn">Convert Image</button>
+            <div class="select-wrapper">
+                <select id="formatSelect">
+                    <option value="image/png">PNG</option>
+                    <option value="image/jpeg">JPEG</option>
+                    <option value="image/webp">WebP</option>
+                </select>
+            </div>
+            <button id="convertBtn">Convert Now</button>
         </div>
 
         <div id="resultArea" class="hidden">
-            <h3>Preview:</h3>
-            <img id="previewImage" alt="Preview will appear here">
-            <br>
-            <a id="downloadLink" class="btn-download">Download Converted Image</a>
+            <div class="divider"></div>
+            <h3>Preview</h3>
+            <div class="image-box">
+                <img id="previewImage" alt="Preview will appear here">
+            </div>
+            <a id="downloadLink" class="btn-download">Download Image</a>
         </div>
     </div>
 
