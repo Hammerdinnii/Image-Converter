@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Converter</title>
+    <title>Modern Image Converter</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,7 +18,8 @@
         <div class="upload-wrapper">
             <input type="file" id="imageInput" accept="image/*" class="file-input">
             <div class="file-custom-label">
-                <span>Click to Upload Image</span>
+                <span id="uploadText">Click to Upload Image</span>
+                <img id="sourcePreview" class="hidden">
             </div>
         </div>
 
@@ -35,9 +36,9 @@
 
         <div id="resultArea" class="hidden">
             <div class="divider"></div>
-            <h3>Preview</h3>
+            <h3>Converted Result</h3>
             <div class="image-box">
-                <img id="previewImage" alt="Preview will appear here">
+                <img id="previewImage" alt="Result will appear here">
             </div>
             <a id="downloadLink" class="btn-download">Download Image</a>
         </div>
