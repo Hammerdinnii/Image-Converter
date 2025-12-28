@@ -1,3 +1,27 @@
+// 1. Handle the Instant Upload Preview
+document.getElementById('imageInput').addEventListener('change', function() {
+    const file = this.files[0];
+    const uploadText = document.getElementById('uploadText');
+    const sourcePreview = document.getElementById('sourcePreview');
+
+    if (file) {
+        // Read the file just for the preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Hide the text, show the image
+            uploadText.style.display = 'none'; 
+            sourcePreview.src = e.target.result;
+            sourcePreview.classList.remove('hidden');
+        }
+        reader.readAsDataURL(file);
+    } else {
+        // If they cancel selection, revert
+        uploadText.style.display = 'block';
+        sourcePreview.classList.add('hidden');
+    }
+});
+
+// 2. Handle the Conversion
 document.getElementById('convertBtn').addEventListener('click', () => {
     const input = document.getElementById('imageInput');
     const format = document.getElementById('formatSelect').value;
@@ -12,31 +36,32 @@ document.getElementById('convertBtn').addEventListener('click', () => {
         reader.onload = function(e) {
             const img = new Image();
             img.onload = function() {
-                // Create a canvas element
+                // Create canvas
                 const canvas = document.createElement('canvas');
                 canvas.width = img.width;
                 canvas.height = img.height;
                 const ctx = canvas.getContext('2d');
 
-                // Draw the image onto the canvas
+                // Draw image
                 ctx.drawImage(img, 0, 0);
 
-                // Convert canvas to the selected format
-                // 0.9 is the quality parameter for JPEGs/WebP (0 to 1)
+                // Convert
                 const dataURL = canvas.toDataURL(format, 0.9);
 
-                // Update the preview
+                // Show Result
                 previewImage.src = dataURL;
                 resultArea.classList.remove('hidden');
 
-                // Update download link
-                // Determine file extension based on format
+                // Setup Download
                 let extension = 'png';
                 if (format === 'image/jpeg') extension = 'jpg';
                 if (format === 'image/webp') extension = 'webp';
 
                 downloadLink.href = dataURL;
                 downloadLink.download = `converted-image.${extension}`;
+                
+                // Scroll down to the result
+                resultArea.scrollIntoView({ behavior: 'smooth' });
             };
             img.src = e.target.result;
         };
