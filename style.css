@@ -15,6 +15,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    padding: 20px;
 }
 
 /* BACKGROUND ACCENTS (The glowing blobs) */
@@ -33,15 +34,15 @@ body {
 
 /* MAIN CARD CONTAINER */
 .container {
-    background: rgba(30, 41, 59, 0.7); /* Semi-transparent dark */
+    background: rgba(30, 41, 59, 0.7);
     padding: 2.5rem;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px); /* Glass effect */
+    backdrop-filter: blur(10px);
     text-align: center;
     max-width: 450px;
-    width: 90%;
+    width: 100%;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -80,10 +81,15 @@ p {
 .file-custom-label {
     background: #1e293b;
     border: 2px dashed #475569;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 12px;
     transition: all 0.3s ease;
     color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
 }
 
 /* Highlight border when hovering over input */
@@ -91,6 +97,16 @@ p {
     border-color: #6366f1;
     background: #253046;
     color: #fff;
+}
+
+/* Upload Preview Styling */
+#sourcePreview {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    object-fit: contain;
 }
 
 /* CONTROLS ROW */
@@ -162,7 +178,7 @@ h3 {
     color: white;
     padding: 12px 30px;
     text-decoration: none;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
     transition: all 0.3s ease;
