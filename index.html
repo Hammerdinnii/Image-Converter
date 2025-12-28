@@ -3,34 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Image Converter</title>
+    <title>Ultimate Image Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Image Converter</h1>
-        <p>Convert images securely in your browser.</p>
+    <div class="background-glow"></div>
 
-        <div class="upload-section">
-            <input type="file" id="imageInput" accept="image/*">
+    <div class="card">
+        <div class="header">
+            <h1>Image Converter</h1>
+            <p>Convert images locally in your browser.</p>
+        </div>
+
+        <div class="upload-area">
+            <input type="file" id="imageInput" accept="image/*" class="hidden-input">
+            
+            <div class="upload-label" id="dropZone">
+                <i class="fa-solid fa-cloud-arrow-up icon-upload"></i>
+                <span id="uploadText">Click to Upload Image</span>
+                
+                <img id="sourcePreview" class="hidden">
+            </div>
+
+            <div id="progressContainer" class="progress-container hidden">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Processing...</span>
+            </div>
+
+            <div id="successMessage" class="success-message hidden">
+                <i class="fa-solid fa-circle-check"></i> Uploaded Successfully
+            </div>
         </div>
 
         <div class="controls">
-            <label for="formatSelect">Convert to:</label>
-            <select id="formatSelect">
-                <option value="image/png">PNG</option>
-                <option value="image/jpeg">JPEG</option>
-                <option value="image/webp">WebP</option>
-            </select>
-            <button id="convertBtn">Convert Image</button>
+            <div class="input-group">
+                <label>Convert to:</label>
+                <select id="formatSelect">
+                    <option value="image/png">PNG (High Quality)</option>
+                    <option value="image/jpeg">JPEG (Compressed)</option>
+                    <option value="image/webp">WebP (Modern Web)</option>
+                </select>
+            </div>
+            <button id="convertBtn" disabled>Convert Now</button>
         </div>
 
-        <div id="resultArea" class="hidden">
-            <h3>Preview:</h3>
-            <img id="previewImage" alt="Preview will appear here">
-            <br>
-            <a id="downloadLink" class="btn-download">Download Converted Image</a>
+        <div id="resultArea" class="result-area hidden">
+            <div class="divider"></div>
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Your Result</h3>
+            <div class="preview-box">
+                <img id="finalPreview" alt="Converted Image">
+            </div>
+            <a id="downloadLink" class="btn-download">
+                <i class="fa-solid fa-download"></i> Download Image
+            </a>
         </div>
     </div>
 
